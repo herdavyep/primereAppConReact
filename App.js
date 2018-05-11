@@ -12,6 +12,7 @@ import {
   View,
   Button
 } from 'react-native';
+import ComponenteTexto from './componenteTexto';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,38 +22,6 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-
-export class Loading extends Component{
-  render(){
-    return(
-      <Text>Loading..... </Text>
-    )
-  }  
-}
-
-export class ComponenteHijo extends Component{
-  render(){
-    if(this.props.result){
-      var res = this.props.result.map((item, i) => {
-        return (
-          <Text key={i}>{item.title}</Text>
-        )
-      })
-    }else{
-      return(
-        <Loading/>
-      )
-    }
-
-    return(
-      <View>
-        {res}
-        <View style={this.props.status ? styles.on : styles.off} />
-      </View>  
-    )
-  }
-}
-
 export default class App extends Component<Props> {
   constructor(){
     super()
@@ -81,21 +50,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <ComponenteHijo status={this.state.status} result={this.state.data} />
-        <Button 
-          onPress={this.alPrecionar.bind(this)}
-          title='Presioname!!'
-          color='red'
-        />
-        <Text style={styles.welcome}>
-          Bienvenido a react nativo
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <ComponenteTexto/>
       </View>
     );
   }
